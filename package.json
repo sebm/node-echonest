@@ -1,0 +1,14 @@
+{
+  "author": "Sebastian Motraghi <sebastian.m@gmail.com>",
+  "name": "echonest",
+  "description": "A wrapper to the Echo Nest API",
+  "version": "0.0.1",
+  "repository": {
+    "url": ""
+  },
+  "engines": {
+    "node": "~v0.4.7"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
