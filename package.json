@@ -10,6 +10,11 @@
     "node": "~v0.4.7"
   },
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "vows" : "0.5.10"
+  },
   "main" : "index",
+  "scripts" : {
+    "test" : "make test"
+  }
 }
