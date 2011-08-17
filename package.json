@@ -4,7 +4,7 @@
   "description": "A wrapper to the Echo Nest API",
   "version": "0.0.1",
   "repository": {
-    "url": ""
+    "url": "git://github.com/sebm/node-echonest.git"
   },
   "engines": {
     "node": "~v0.4.7"
