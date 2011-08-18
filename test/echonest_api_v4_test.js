@@ -24,8 +24,14 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
       topic: function (en) {
         en.execute('artist', 'hotttnesss', ['name'], { name : 'Ratatat'}, this.callback);
       },
-      'results in data': function (result,err) {
+      'we get the data we expect': function (result,err) {
         assert.isObject(result);
+        assert.equal(result.response.status.message, 'Success');
+        assert.equal(result.response.status.code, 0);
+        assert.isObject(result.response.artist);
+        assert.isString(result.response.artist.name);
+        assert.isString(result.response.artist.id);
+        assert.isNumber(result.response.artist.hotttnesss);
       }
     }
   }
