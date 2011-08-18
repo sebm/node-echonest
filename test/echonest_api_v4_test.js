@@ -24,8 +24,8 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
       topic: function (en) {
         en.execute('artist', 'hotttnesss', ['name'], { name : 'Ratatat'}, this.callback);
       },
-      'results in data': function (err, result) {
-        assert.isNotNull(result);
+      'results in data': function (result,err) {
+        assert.isObject(result);
       }
     }
   }
