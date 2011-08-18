@@ -9,7 +9,10 @@
   "engines": {
     "node": "~v0.4.7"
   },
-  "dependencies": {},
+  "dependencies": {
+    "request" : "2.1.0",
+    "underscore" : "1.1.7"
+  },
   "devDependencies": {
     "vows" : "0.5.10"
   },
