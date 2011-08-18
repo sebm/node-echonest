@@ -13,6 +13,12 @@ vows.describe('Basics!').addBatch({
     },
     'the howdy function works': function (topic) {
       assert.equal(topic.howdy(), 'Howdy!');
+    },
+    'the version number is set': function(topic) {
+      assert.equal(topic.version, '4');
+    },
+    'the apiKey is set': function(topic) {
+      assert.equal(topic.apiKey, theAPIKey);
     }
     
   }
