@@ -76,6 +76,15 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.length(result.blogs, 2);
         assert.equal(result.start, 1);
       }
+    },
+    'when the artist familiarity method is called' : {
+      topic: function (en) {
+        en.familiarity({ name: 'Ratatat'}, this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.isNumber(result.artist.familiarity);
+      }
     }
   }
 }).export(module);
