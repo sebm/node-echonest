@@ -5,7 +5,7 @@ var vows = require('vows'),
 var theAPIKey = process.env.ECHONEST_API_KEY;
 
 vows.describe('EchoNest API v4 wrapper').addBatch({
-  'An EchoNestAPI object': {
+  'An EchoNestAPI object with a valid API key': {
     topic: function () { return new EchoNestAPI(theAPIKey, { version:'4'}); },
 
     'is successfully instantiated': function (topic) {
