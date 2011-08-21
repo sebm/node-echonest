@@ -38,6 +38,17 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isObject(result);
         assert.match(result.error, /missing parameter/i);
       }
+    },
+    'when the artist audio method is called by name with some parameters' : {
+      topic: function (en) {
+        en.audio({ name: 'Ratatat', start: 15, results: 21 }, this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.isArray(result.audio);
+        assert.length(result.audio, 21);
+        assert.equal(result.start, 15);
+      },
     }
   }
 }).export(module);
