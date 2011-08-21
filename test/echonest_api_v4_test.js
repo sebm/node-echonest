@@ -42,6 +42,15 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
         assert.isObject(result);
         assert.equal(result.code, 404);
       }
+    },
+    'when its "execute method" is pointed at a valid endpoint with an invalid parameter' : {
+      topic: function (en) {
+        en.execute('artist', 'hotttnesss', ['name'], { name : 'Ratatatatat'}, this.callback);
+      },
+      'the error message reflects this': function (result, err) {
+        assert.isObject(result);
+        assert.match(result.error, /invalid parameter/i);
+      }
     }
   }
 }).export(module);
