@@ -64,6 +64,19 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.include(['cc-by-sa', 'all-rights-reserved'], bio.license.type);
         });
       }
+    },
+    'when the artist blogs method is called with some parameters' : {
+      topic: function (en) {
+        en.blogs({ name: 'Ratatat', start: 1, results: 2, high_relevance: true},
+          this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.isArray(result.blogs);
+        assert.length(result.blogs, 2);
+        assert.equal(result.start, 1);
+        assert.equal(result, {});
+      }
     }
   }
 }).export(module);
