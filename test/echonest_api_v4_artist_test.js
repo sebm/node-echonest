@@ -75,7 +75,6 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isArray(result.blogs);
         assert.length(result.blogs, 2);
         assert.equal(result.start, 1);
-        assert.equal(result, {});
       }
     }
   }
