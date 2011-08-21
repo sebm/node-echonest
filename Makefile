@@ -1,7 +1,7 @@
-testbasics:
+test/basics:
 	vows -v test/echonest_api_v4_basics_test.js
 
-testartist:
+test/artist:
 	vows -v test/echonest_api_v4_artist_test.js
 
 test:
