@@ -26,12 +26,12 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
       },
       'we get the data we expect': function (result,err) {
         assert.isObject(result);
-        assert.equal(result.response.status.message, 'Success');
-        assert.equal(result.response.status.code, 0);
-        assert.isObject(result.response.artist);
-        assert.isString(result.response.artist.name);
-        assert.isString(result.response.artist.id);
-        assert.isNumber(result.response.artist.hotttnesss);
+        assert.equal(result.status.message, 'Success');
+        assert.equal(result.status.code, 0);
+        assert.isObject(result.artist);
+        assert.isString(result.artist.name);
+        assert.isString(result.artist.id);
+        assert.isNumber(result.artist.hotttnesss);
       }
     },
     'when its "execute method" is pointed at an invalid endpoint' : {
