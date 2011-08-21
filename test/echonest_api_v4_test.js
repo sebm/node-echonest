@@ -52,5 +52,19 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
         assert.match(result.error, /invalid parameter/i);
       }
     }
+  },
+  'An EchoNestAPI object with an invalid API key' : {
+    topic: function() { return new EchoNestAPI('notavalidapikey', { version: '4'}); },
+    
+    'when its "execute" method is called correctly' : {
+      topic: function (en) {
+        en.execute('artist', 'hotttnesss', ['name'], { name : 'Ratatat'}, this.callback);
+      },
+      'the error message reflects this': function (result, err) {
+        assert.isObject(result);
+        assert.match(result.error, /missing\/invalid API key/i);
+      }
+    }
+    
   }
 }).export(module);
