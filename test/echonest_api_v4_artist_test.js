@@ -85,6 +85,17 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isObject(result);
         assert.isNumber(result.artist.familiarity);
       }
+    },
+    'when the artist images method is called' : {
+      topic: function (en) {
+        en.images({ name: 'Ratatat', results: 20, start: 1}, this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.isArray(result.images);
+        assert.length(result.images, 20);
+        assert.equal(result.start, 1);
+      }
     }
   }
 }).export(module);
