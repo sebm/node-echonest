@@ -33,6 +33,15 @@ vows.describe('EchoNest API v4 wrapper').addBatch({
         assert.isString(result.response.artist.id);
         assert.isNumber(result.response.artist.hotttnesss);
       }
+    },
+    'when its "execute method" is pointed at an invalid endpoint' : {
+      topic: function (en) {
+        en.execute('artiste', 'hotttnesss', ['name'], { name : 'Ratatat'}, this.callback);
+      },
+      'it gets a 404': function (result, err) {
+        assert.isObject(result);
+        assert.equal(result.code, 404);
+      }
     }
   }
 }).export(module);
