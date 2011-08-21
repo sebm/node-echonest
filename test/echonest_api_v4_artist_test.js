@@ -49,6 +49,21 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.length(result.audio, 21);
         assert.equal(result.start, 15);
       },
+    },
+    'when the artist biographies method is called with some parameters' : {
+      topic: function (en) {
+        en.biographies({ name: 'Ratatat', start: 1, results: 2, 
+          license: ['cc-by-sa', 'all-rights-reserved'] }, this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.isArray(result.biographies);
+        assert.length(result.biographies, 2);
+        assert.equal(result.start, 1);
+        result.biographies.forEach(function(bio) {
+          assert.include(['cc-by-sa', 'all-rights-reserved'], bio.license.type);
+        });
+      }
     }
   }
 }).export(module);
