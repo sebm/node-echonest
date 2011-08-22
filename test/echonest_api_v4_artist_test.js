@@ -101,12 +101,24 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
       topic: function (en) {
         en.list_terms({ type: 'style'}, this.callback);
       },
-      'you get the extended response' : function(result, err) {
+      'you get the expected response' : function(result, err) {
         assert.isObject(result);
         assert.equal(result.type, 'style');
         assert.isArray(result.terms);
         assert.deepInclude(result.terms, { name : 'rock' });
       }
-    }
+    },
+    'when the artist news method is called' : {
+      topic: function (en) {
+        en.news({ name: 'Ratatat', start: 1, results: 2, high_relevance: true },
+          this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.equal(result.start, 1);
+        assert.isArray(result.news);
+        assert.length(result.news, 2);
+      }
+    }    
   }
 }).export(module);
