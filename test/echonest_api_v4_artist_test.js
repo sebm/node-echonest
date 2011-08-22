@@ -129,7 +129,18 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isArray(result.artist.blogs);
         assert.isArray(result.artist.audio);
       }
-    }    
+    },
+    'when the artist reviews method is called' : {
+      topic: function (en) {
+        en.reviews({ name: 'Ratatat', results: 2, start: 1}, this.callback);
+      },
+      'you get the expected response' : function(result, err) {
+        assert.isObject(result);
+        assert.equal(result.start, 1);
+        assert.isArray(result.reviews);
+        assert.length(result.reviews, 2);
+      }
+    }
 
   }
 }).export(module);
