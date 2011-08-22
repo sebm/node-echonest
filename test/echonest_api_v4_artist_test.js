@@ -185,6 +185,20 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.include(['Ratatat', 'Ratt'], a.name);
         });
       }
+    },
+    'when the artist songs method is called' : {
+      topic: function(en) {
+        en.songs({ name: 'Ratatat', results: 20, start: 1}, this.callback);
+      },
+      'you get an array of songs' : function (result, err) {
+        assert.isObject(result);
+        assert.length(result.songs, 20);
+        result.songs.forEach(function(song) {
+          assert.isString(song.title);
+          assert.isString(song.id);
+        });
+        
+      }
     }
 
   }
