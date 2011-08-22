@@ -140,6 +140,36 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isArray(result.reviews);
         assert.length(result.reviews, 2);
       }
+    },
+    'when the artist search method is called with an ambiguous artist name' : {
+      topic: function (en) {
+        en.artist_search({ name: 'Girls'}, this.callback);
+      },
+      'you get an array of artist names/ids': function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        result.artists.forEach(function(a) {
+          assert.isString(a.name);
+          assert.isString(a.id);
+          assert.match(a.name, /girls/i);
+        });
+      }
+    },
+    'when the artist search method is called with various non-name params': {
+      topic: function (en) {
+        en.artist_search({ style: ['jazz', 'metal'], mood: 'happy', 
+          bucket: ['familiarity', 'years_active'] }, this.callback);
+      },
+      'you get an array of artist names/ids plus buckets' : function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        result.artists.forEach(function(a) {
+          assert.isString(a.name);
+          assert.isString(a.id);
+          assert.isNumber(a.familiarity);
+          assert.isArray(a.years_active);
+        });
+      }
     }
 
   }
