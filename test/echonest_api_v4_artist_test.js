@@ -170,6 +170,21 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isArray(a.years_active);
         });
       }
+    },
+    'when the artist extract method is called on some text' : {
+      topic: function(en) {
+        en.extract({ text: 'I prefer Ratatat over Ratt.', bucket: 'familiarity'}, this.callback);
+      },
+      'you get artist names/ids relevant to the text' : function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        result.artists.forEach(function(a) {
+          assert.isString(a.name);
+          assert.isString(a.id);
+          assert.isNumber(a.familiarity);
+          assert.include(['Ratatat', 'Ratt'], a.name);
+        });
+      }
     }
 
   }
