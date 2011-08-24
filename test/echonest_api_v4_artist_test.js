@@ -197,9 +197,21 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isString(song.title);
           assert.isString(song.id);
         });
-        
+      }
+    },
+    'when the artist similar method is called' : {
+      topic: function(en) {
+        en.similar({ name: 'Ratatat', bucket: 'familiarity', results: 5}, this.callback);
+      },
+      'you get an array of similar artists' : function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        assert.length(result.artists, 5);
+        result.artists.forEach(function(artist) {
+          assert.isString(artist.name);
+          assert.isString(artist.id);
+        });
       }
     }
-
   }
 }).export(module);
