@@ -212,6 +212,19 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isString(artist.id);
         });
       }
+    },
+    'when the artist suggest method is called': {
+      topic: function(en) {
+        en.suggest({ name: 'Rat', results: 5}, this.callback);
+      },
+      'you get an array of artists' : function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        assert.length(result.artists, 5);
+        result.artists.forEach(function(artist) {
+          assert.match(artist.name, /rat/i);
+        });
+      }
     }
   }
 }).export(module);
