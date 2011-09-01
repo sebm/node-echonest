@@ -239,6 +239,18 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isNumber(t.weight);
         });
       }
+    },
+    'when the top_hottt artists method is called': {
+      topic: function(en) {
+        en.top_hottt({ }, this.callback);
+      },
+      'you get an array of the top hottt artists': function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.artists);
+        result.artists.forEach( function (artist) {
+          assert.isString(artist.name);
+        });
+      }
     }
   }
 }).export(module);
