@@ -251,6 +251,21 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isString(artist.name);
         });
       }
+    },
+    'when the top_terms method is called': {
+      topic: function(en) {
+        en.top_terms({ results: 14 }, this.callback);
+      },
+      'you get an array of the top terms': function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.terms);
+        assert.length(result.terms, 14);
+
+        result.terms.forEach( function(term) {
+          assert.isString(term.name);
+          assert.isNumber(term.frequency);
+        });
+      }
     }
   }
 }).export(module);
