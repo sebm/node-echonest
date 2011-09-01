@@ -225,6 +225,20 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.match(artist.name, /rat/i);
         });
       }
+    },
+    'when the artist terms method is called': {
+      topic: function(en) {
+        en.terms({ name: 'Ratatat' }, this.callback);
+      },
+      'you get an array of terms' : function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.terms);
+        result.terms.forEach(function(t) {
+          assert.isString(t.name);
+          assert.isNumber(t.frequency);
+          assert.isNumber(t.weight);
+        });
+      }
     }
   }
 }).export(module);
