@@ -266,6 +266,15 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
           assert.isNumber(term.frequency);
         });
       }
+    },
+    'when the artist urls method is called': {
+      topic: function(en) {
+        en.urls({ name: 'Ratatat' }, this.callback);
+      },
+      'you get an array of urls for that artist' : function (result, err) {
+        assert.isObject(result);
+        assert.isObject(result.urls);
+      },
     }
   }
 }).export(module);
