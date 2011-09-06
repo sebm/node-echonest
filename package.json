@@ -14,7 +14,8 @@
     "underscore" : "1.1.7"
   },
   "devDependencies": {
-    "vows" : "0.5.10"
+    "vows" : "0.5.10",
+    "validator" : "0.2.7"
   },
   "main" : "index",
   "scripts" : {
