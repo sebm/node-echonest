@@ -276,6 +276,11 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         assert.isObject(result);
         assert.isObject(result.urls);
       },
-    }
+      'these urls are legal': function (result, err) {
+        for (key in result.urls) {
+          assert.isObject(check(result.urls[key]).isUrl());
+        }
+      }
+    },
   }
 }).export(module);
