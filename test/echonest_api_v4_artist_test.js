@@ -282,5 +282,20 @@ vows.describe('EchoNest API v4 artist methods').addBatch({
         }
       }
     },
+    'when the artist video method is called': {
+      topic: function(en) {
+        en.video({ name: 'Ratatat', results: 20, start: 5 }, this.callback);
+      },
+      'you get an array of videos for that artist' : function (result, err) {
+        assert.isObject(result);
+        assert.equal(result.start, 5);
+        assert.length(result.video, 20);
+      },
+      'these videos have legal urls': function (result, err) {
+        result.video.forEach(function(video) {
+          assert.isObject(check(video.url).isUrl());
+        });
+      }
+    }    
   }
 }).export(module);
