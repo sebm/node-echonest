@@ -58,5 +58,15 @@ vows.describe('EchoNest API v4 song methods').addBatch({
         });
       }
     },
+    'when the song identify method is called with a code for "Wildcat" by Ratatat': {
+      topic: function (en) {
+        en.identify({ code: wildcat[0].code }, this.callback);
+      },
+      'you get Ratatat': function(result, err) {
+        assert.isObject(result);
+        assert.equal(result.songs[0].title, 'Wildcat');
+        assert.equal(result.songs[0].artist_name, 'Ratatat');
+      }
+    }
   }
 }).export(module);
