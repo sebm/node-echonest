@@ -9,7 +9,7 @@ vows.describe('EchoNest API v4 song methods').addBatch({
   'An EchoNestAPI object with a valid API key': {
     topic: function () { return new EchoNestAPI(theAPIKey, { version:'4'}); },
     
-    'when the song method is called by artist name': {
+    'when the song search method is called by artist name': {
       topic: function (en) {
         en.song_search({ artist: 'Ratatat' }, this.callback);
       }, 
