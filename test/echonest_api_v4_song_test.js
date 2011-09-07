@@ -1,7 +1,8 @@
 var vows = require('vows'),
   assert = require('assert'),
   check = require('validator').check,
-  EchoNestAPI = require('../index.js');
+  EchoNestAPI = require('../index.js'),
+  wildcat = require('./wildcat.js').wildcat;
 
 var theAPIKey = process.env.ECHONEST_API_KEY;
 
