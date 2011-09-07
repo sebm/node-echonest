@@ -51,7 +51,6 @@ vows.describe('EchoNest API v4 song methods').addBatch({
       'you get some songs by Radiohead': function (result, err) {
         assert.isObject(result);
         assert.isArray(result.songs);
-        assert.equal(result);
         result.songs.forEach(function(s) {
           assert.isObject(s.audio_summary);
           assert.equal(s.artist_name, 'Radiohead');
