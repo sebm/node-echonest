@@ -42,6 +42,21 @@ vows.describe('EchoNest API v4 song methods').addBatch({
           assert.isNumber(s.artist_familiarity);
         });
       }
-    }
+    },
+    'when the song profile method is called by song id': {
+      topic: function (en) {
+        en.song_profile({ id: ['SOFLDOK12A8C13E8F7', 'SOGBLMI12AB01856AC'],
+        bucket: ['audio_summary']}, this.callback);
+      }, 
+      'you get some songs by Radiohead': function (result, err) {
+        assert.isObject(result);
+        assert.isArray(result.songs);
+        assert.equal(result);
+        result.songs.forEach(function(s) {
+          assert.isObject(s.audio_summary);
+          assert.equal(s.artist_name, 'Radiohead');
+        });
+      }
+    },
   }
 }).export(module);
