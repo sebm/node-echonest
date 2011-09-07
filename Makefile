@@ -4,6 +4,9 @@ test/basics:
 test/artist:
 	vows -v test/echonest_api_v4_artist_test.js
 
+test/song:
+	vows -v test/echonest_api_v4_song_test.js
+
 test:
 	vows -v test/*
 
