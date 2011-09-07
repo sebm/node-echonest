@@ -20,6 +20,28 @@ vows.describe('EchoNest API v4 song methods').addBatch({
           assert.equal(s.artist_id, 'AREPZK61187B990670');
         });
       }
+    },
+    'when the song search method is called for sad songs from famous Oxford bands' : {
+      // this test will break if a sad band from Oxford ever gets big.
+      topic: function (en) {
+        en.song_search({ min_latitude: 51.7, max_latitude: 51.8, 
+          min_longitude: -1.29, max_longitude: -1.2, results: 100,
+          artist_min_familiarity: 0.8, mood: 'sad', bucket: ['artist_familiarity']},
+          this.callback);
+      },
+      'they are ALL Radiohead songs': function(result, err) {
+        assert.isObject(result);
+        assert.isArray(result.songs);
+        result.songs.forEach(function(s) {
+          assert.equal(s.artist_name, 'Radiohead');
+        });
+      },
+      'the songs\' familiarity is reported' : function(result, err) {
+        assert.isObject(result);
+        result.songs.forEach(function(s) {
+          assert.isNumber(s.artist_familiarity);
+        });
+      }
     }
   }
 }).export(module);
