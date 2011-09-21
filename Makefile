@@ -8,6 +8,6 @@ test/song:
 	vows -v test/echonest_api_v4_song_test.js
 
 test:
-	vows -v test/*
+	vows -v test/*_test.js
 
 .PHONY: test
